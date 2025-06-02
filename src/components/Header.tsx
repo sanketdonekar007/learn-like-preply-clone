@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, ChevronDown } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -10,6 +10,14 @@ const Header = () => {
 
   const handleFindTutorsClick = () => {
     navigate('/find-tutor/english');
+  };
+
+  const handleForBusinessClick = () => {
+    navigate('/for-business');
+  };
+
+  const handleBecomeTutorClick = () => {
+    navigate('/become-tutor');
   };
 
   return (
@@ -30,18 +38,18 @@ const Header = () => {
             >
               Find tutors
             </button>
-            <div className="relative group">
-              <button className="flex items-center text-gray-700 hover:text-green-600 transition-colors">
-                Enterprise
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-            </div>
-            <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">
+            <button 
+              onClick={handleForBusinessClick}
+              className="text-gray-700 hover:text-green-600 transition-colors"
+            >
+              For business
+            </button>
+            <button 
+              onClick={handleBecomeTutorClick}
+              className="text-gray-700 hover:text-green-600 transition-colors"
+            >
               Become a tutor
-            </a>
-            <a href="#" className="text-gray-700 hover:text-green-600 transition-colors">
-              Pricing
-            </a>
+            </button>
           </nav>
 
           {/* Right side buttons */}
@@ -76,9 +84,8 @@ const Header = () => {
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="space-y-4">
               <button onClick={handleFindTutorsClick} className="block text-gray-700 w-full text-left">Find tutors</button>
-              <a href="#" className="block text-gray-700">Enterprise</a>
-              <a href="#" className="block text-gray-700">Become a tutor</a>
-              <a href="#" className="block text-gray-700">Pricing</a>
+              <button onClick={handleForBusinessClick} className="block text-gray-700 w-full text-left">For business</button>
+              <button onClick={handleBecomeTutorClick} className="block text-gray-700 w-full text-left">Become a tutor</button>
               <div className="pt-4 border-t border-gray-200">
                 <Button variant="ghost" className="w-full mb-2">Log in</Button>
                 <Button className="w-full bg-green-600 hover:bg-green-700">Sign up</Button>
