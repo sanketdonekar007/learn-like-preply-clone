@@ -8,6 +8,7 @@ import GuaranteedLessons from "../components/GuaranteedLessons";
 import BecomeTutor from "../components/BecomeTutor";
 import CorporateTraining from "../components/CorporateTraining";
 import Testimonials from "../components/Testimonials";
+import LanguageCoursesSection from "../components/LanguageCoursesSection";
 import Footer from "../components/Footer";
 
 const Index = () => {
@@ -22,6 +23,7 @@ const Index = () => {
       <BecomeTutor />
       <CorporateTraining />
       <Testimonials />
+      <LanguageCoursesSection />
       <Footer />
     </div>
   );
