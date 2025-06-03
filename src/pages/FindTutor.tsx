@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import Header from "../components/Header";
@@ -8,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Heart, Star, MapPin, Calendar, Clock, DollarSign, Search, ChevronDown } from "lucide-react";
 
 const tutors = [
@@ -269,7 +269,7 @@ const FindTutor = () => {
         </div>
       </div>
 
-      {/* Results Counter */}
+      {/* Results Counter and Tutor Listings */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">
           35,163 {selectedLanguage} teachers available
@@ -316,7 +316,7 @@ const FindTutor = () => {
                   <p className="text-gray-700 mb-4 line-clamp-3">
                     {tutor.description}
                   </p>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
+                  <div className="flex flex-wrap gap-1 mb-4">
                     <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
                       {tutor.experience}
@@ -368,6 +368,183 @@ const FindTutor = () => {
           </Button>
         </div>
       </div>
+
+      {/* How Preply Works Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12">
+            How Preply works
+          </h2>
+          
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1" className="border border-gray-200 rounded-lg px-6">
+              <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                1. Find the best {selectedLanguage} tutor
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600 pt-4 pb-6">
+                Choose from over 33,602 {selectedLanguage} tutors. Use filters to narrow your search and find the perfect fit.
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-2" className="border border-gray-200 rounded-lg px-6">
+              <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                2. Book your first lesson
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600 pt-4 pb-6">
+                Schedule a trial lesson at a time that works for you. Most tutors offer flexible scheduling to fit your lifestyle.
+              </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-3" className="border border-gray-200 rounded-lg px-6">
+              <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                3. Subscribe and learn regularly
+              </AccordionTrigger>
+              <AccordionContent className="text-gray-600 pt-4 pb-6">
+                Continue learning with regular lessons. Build a learning routine that helps you achieve your language goals faster.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Why Preply is the Best Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12">
+            Why Preply is the best site to learn {selectedLanguage} online
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
+              <div className="mb-6">
+                <div className="text-4xl font-bold text-green-600 mb-2">5<span className="text-2xl">/5</span></div>
+                <div className="flex justify-center mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+              </div>
+              <p className="text-gray-600">
+                {selectedLanguage} tutors with an average rating of 5 and up to 156 reviews
+              </p>
+            </Card>
+
+            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
+              <div className="mb-6">
+                <div className="text-4xl font-bold text-green-600 mb-2">3<span className="text-lg"> languages</span></div>
+              </div>
+              <p className="text-gray-600">
+                Our {selectedLanguage} tutors speak on average 3 different languages
+              </p>
+            </Card>
+
+            <Card className="p-8 text-center hover:shadow-lg transition-shadow">
+              <div className="mb-6">
+                <div className="text-4xl font-bold text-green-600 mb-2">2<span className="text-lg">h</span></div>
+              </div>
+              <p className="text-gray-600">
+                Our {selectedLanguage} tutors on average answer students in 2 hours
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12">
+            Our {selectedLanguage} students love us
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="p-6">
+              <div className="flex items-center mb-4">
+                <img
+                  src="/placeholder.svg"
+                  alt="Evelyn"
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold">Evelyn</h4>
+                  <p className="text-sm text-gray-600">with Tanya</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-sm text-gray-600">
+                Tanya is amazing, she adapts everything 100 percent to my needs and my level.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center mb-4">
+                <img
+                  src="/placeholder.svg"
+                  alt="Camila"
+                  className="w-12 h-12 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <h4 className="font-semibold">Camila</h4>
+                  <p className="text-sm text-gray-600">with Ishan</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-sm text-gray-600">
+                I highly recommend Ishan. He is a great teacher. He is very patient.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-gray-400 flex items-center justify-center mr-3">
+                  <span className="text-white font-semibold">H</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold">Hani</h4>
+                  <p className="text-sm text-gray-600">with Jonathan</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-sm text-gray-600">
+                Jonathon is an exceptional {selectedLanguage} teacher. He is very patient.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center mr-3">
+                  <span className="text-gray-600 font-semibold">M</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold">Mi</h4>
+                  <p className="text-sm text-gray-600">with Jennifer</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(4)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+                <Star className="h-4 w-4 text-gray-300" />
+              </div>
+              <p className="text-sm text-gray-600">
+                Teacher Jennifer is very good. I really enjoy her classes.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
