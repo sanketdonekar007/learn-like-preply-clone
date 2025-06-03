@@ -6,7 +6,9 @@ import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Star, MapPin, Calendar, Clock, DollarSign, Filter, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Heart, Star, MapPin, Calendar, Clock, DollarSign, Search, ChevronDown } from "lucide-react";
 
 const tutors = [
   {
@@ -70,8 +72,15 @@ const tutors = [
 const FindTutor = () => {
   const { language } = useParams();
   const [searchQuery, setSearchQuery] = useState("");
-  const [priceRange, setPriceRange] = useState("all");
-  const [availability, setAvailability] = useState("all");
+  const [selectedLanguage, setSelectedLanguage] = useState(language || "English");
+  const [priceRange, setPriceRange] = useState("₹200 - ₹3,400+");
+  const [countryOfBirth, setCountryOfBirth] = useState("Any country");
+  const [availability, setAvailability] = useState("Any time");
+  const [specialties, setSpecialties] = useState("Specialties");
+  const [alsoSpeaks, setAlsoSpeaks] = useState("Also speaks");
+  const [nativeSpeaker, setNativeSpeaker] = useState("Native speaker");
+  const [tutorCategories, setTutorCategories] = useState("Tutor categories");
+  const [sortBy, setSortBy] = useState("Our top picks");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -103,58 +112,170 @@ const FindTutor = () => {
         </div>
       </div>
 
-      {/* Search and Filters */}
+      {/* Advanced Filters Section */}
       <div className="bg-white py-6 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Main Filter Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">I want to learn</label>
+              <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="English">English</SelectItem>
+                  <SelectItem value="Spanish">Spanish</SelectItem>
+                  <SelectItem value="French">French</SelectItem>
+                  <SelectItem value="German">German</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Price per lesson</label>
+              <Select value={priceRange} onValueChange={setPriceRange}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="₹200 - ₹3,400+">₹200 - ₹3,400+</SelectItem>
+                  <SelectItem value="₹200 - ₹800">₹200 - ₹800</SelectItem>
+                  <SelectItem value="₹800 - ₹1,600">₹800 - ₹1,600</SelectItem>
+                  <SelectItem value="₹1,600 - ₹3,400">₹1,600 - ₹3,400</SelectItem>
+                  <SelectItem value="₹3,400+">₹3,400+</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Country of birth</label>
+              <Select value={countryOfBirth} onValueChange={setCountryOfBirth}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Any country">Any country</SelectItem>
+                  <SelectItem value="United States">United States</SelectItem>
+                  <SelectItem value="United Kingdom">United Kingdom</SelectItem>
+                  <SelectItem value="Canada">Canada</SelectItem>
+                  <SelectItem value="Australia">Australia</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">I'm available</label>
+              <Select value={availability} onValueChange={setAvailability}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Any time">Any time</SelectItem>
+                  <SelectItem value="Morning">Morning</SelectItem>
+                  <SelectItem value="Afternoon">Afternoon</SelectItem>
+                  <SelectItem value="Evening">Evening</SelectItem>
+                  <SelectItem value="Weekend">Weekend</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Additional Filters Row */}
+          <div className="flex flex-wrap gap-4 mb-4">
+            <Select value={specialties} onValueChange={setSpecialties}>
+              <SelectTrigger className="w-auto min-w-[120px]">
+                <SelectValue />
+                <ChevronDown className="h-4 w-4 ml-2" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Specialties">Specialties</SelectItem>
+                <SelectItem value="Business">Business</SelectItem>
+                <SelectItem value="Conversational">Conversational</SelectItem>
+                <SelectItem value="Grammar">Grammar</SelectItem>
+                <SelectItem value="IELTS">IELTS</SelectItem>
+                <SelectItem value="TOEFL">TOEFL</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={alsoSpeaks} onValueChange={setAlsoSpeaks}>
+              <SelectTrigger className="w-auto min-w-[120px]">
+                <SelectValue />
+                <ChevronDown className="h-4 w-4 ml-2" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Also speaks">Also speaks</SelectItem>
+                <SelectItem value="Spanish">Spanish</SelectItem>
+                <SelectItem value="French">French</SelectItem>
+                <SelectItem value="German">German</SelectItem>
+                <SelectItem value="Italian">Italian</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={nativeSpeaker} onValueChange={setNativeSpeaker}>
+              <SelectTrigger className="w-auto min-w-[120px]">
+                <SelectValue />
+                <ChevronDown className="h-4 w-4 ml-2" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Native speaker">Native speaker</SelectItem>
+                <SelectItem value="Yes">Native speaker only</SelectItem>
+                <SelectItem value="No">Non-native speakers</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={tutorCategories} onValueChange={setTutorCategories}>
+              <SelectTrigger className="w-auto min-w-[150px]">
+                <SelectValue />
+                <ChevronDown className="h-4 w-4 ml-2" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Tutor categories">Tutor categories</SelectItem>
+                <SelectItem value="Professional">Professional</SelectItem>
+                <SelectItem value="Community">Community</SelectItem>
+                <SelectItem value="Certified">Certified</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Search and Sort Row */}
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-              <input
+              <Input
                 type="text"
                 placeholder="Search by name or keyword"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="pl-10"
               />
             </div>
             <div className="flex gap-4">
-              <select
-                value={priceRange}
-                onChange={(e) => setPriceRange(e.target.value)}
-                className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              >
-                <option value="all">All prices</option>
-                <option value="0-15">$0 - $15</option>
-                <option value="15-25">$15 - $25</option>
-                <option value="25+">$25+</option>
-              </select>
-              <select
-                value={availability}
-                onChange={(e) => setAvailability(e.target.value)}
-                className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              >
-                <option value="all">All availability</option>
-                <option value="now">Available now</option>
-                <option value="today">Available today</option>
-                <option value="tomorrow">Available tomorrow</option>
-              </select>
-              <Button variant="outline" className="flex items-center gap-2">
-                <Filter className="h-4 w-4" />
-                More filters
-              </Button>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-auto min-w-[150px]">
+                  <span className="text-sm text-gray-600 mr-2">Sort by:</span>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Our top picks">Our top picks</SelectItem>
+                  <SelectItem value="Price: Low to High">Price: Low to High</SelectItem>
+                  <SelectItem value="Price: High to Low">Price: High to Low</SelectItem>
+                  <SelectItem value="Rating">Rating</SelectItem>
+                  <SelectItem value="Most Reviews">Most Reviews</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tutor Listings */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <p className="text-gray-600">
-            {tutors.length} {language} tutors available
-          </p>
-        </div>
+      {/* Results Counter */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          35,163 {selectedLanguage} teachers available
+        </h2>
 
+        {/* Tutor Listings */}
         <div className="space-y-6">
           {tutors.map((tutor) => (
             <Card key={tutor.id} className="p-6 hover:shadow-lg transition-shadow">
